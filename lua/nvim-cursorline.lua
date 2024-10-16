@@ -2,18 +2,11 @@ local M = {}
 
 local w = vim.w
 local a = vim.api
-local wo = vim.wo
 local fn = vim.fn
 local hl = a.nvim_set_hl
 local au = a.nvim_create_autocmd
-local timer = vim.loop.new_timer()
 
 local DEFAULT_OPTIONS = {
-  cursorline = {
-    enable = true,
-    timeout = 1000,
-    number = false,
-  },
   cursorword = {
     enable = true,
     min_length = 3,
@@ -49,41 +42,6 @@ end
 
 function M.setup(options)
   M.options = vim.tbl_deep_extend("force", DEFAULT_OPTIONS, options or {})
-
-  if M.options.cursorline.enable then
-    wo.cursorline = true
-    au("WinEnter", {
-      callback = function()
-        wo.cursorline = true
-      end,
-    })
-    au("WinLeave", {
-      callback = function()
-        wo.cursorline = false
-      end,
-    })
-    au({ "CursorMoved", "CursorMovedI" }, {
-      callback = function()
-        if M.options.cursorline.number then
-          wo.cursorline = false
-        else
-          wo.cursorlineopt = "number"
-        end
-        timer:start(
-          M.options.cursorline.timeout,
-          0,
-          vim.schedule_wrap(function()
-            if M.options.cursorline.number then
-              wo.cursorline = true
-            else
-              wo.cursorlineopt = "both"
-            end
-          end)
-        )
-      end,
-    })
-  end
-
   if M.options.cursorword.enable then
     au("VimEnter", {
       callback = function()
