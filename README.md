@@ -6,10 +6,6 @@ Highlight words and lines on the cursor for Neovim
 
 https://user-images.githubusercontent.com/42740055/163586251-15c7c709-86bd-4c17-a298-07681bada220.mp4
 
-- Show / hide cursorline in connection with cursor moving.
-
-https://user-images.githubusercontent.com/42740055/163586272-17560f83-9195-4cb4-8c1c-557cfaf775ea.mp4
-
 ## Installation
 
 Install with your favorite plugin manager.
