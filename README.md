@@ -1,4 +1,4 @@
-# nvim-cursorline
+# nvim-cursorword
 
 Highlight words and lines on the cursor for Neovim
 
