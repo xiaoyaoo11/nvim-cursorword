@@ -1,34 +1,67 @@
-# nvim-cursorword
+## Cursorword
 
-Highlight words and lines on the cursor for Neovim
-
-- Underlines the word under the cursor.
-
-https://user-images.githubusercontent.com/42740055/163586251-15c7c709-86bd-4c17-a298-07681bada220.mp4
+A concise, precise, and high-performance cursor word highlighting plugin for Neovim, implemented in Lua.
 
 ## Installation
 
-Install with your favorite plugin manager.
+```lua
+    -- lazy
+    {
+        "xiaoyaoo11/cursorword",
+        event = "VeryLazy",
+        config = true,
+    },
+```
+
+## Configuration
+
+```lua
+    -- default configuration
+    require("stcursorword").setup({
+        max_word_length = 100, -- if cursorword length > max_word_length then not highlight
+        min_word_length = 1, -- if cursorword length < min_word_length then not highlight
+        excluded = {
+            filetypes = {
+                "TelescopePrompt",
+            },
+            buftypes = {
+                -- "nofile",
+                -- "terminal",
+            },
+            patterns = { -- the pattern to match with the file path
+                -- "%.png$",
+                -- "%.jpg$",
+                -- "%.jpeg$",
+                -- "%.pdf$",
+                -- "%.zip$",
+                -- "%.tar$",
+                -- "%.tar%.gz$",
+                -- "%.tar%.xz$",
+                -- "%.tar%.bz2$",
+                -- "%.rar$",
+                -- "%.7z$",
+                -- "%.mp3$",
+                -- "%.mp4$",
+            },
+        },
+        highlight = {
+            underline = true,
+            fg = nil,
+            bg = nil,
+        },
+    })
+```
 
 ## Usage
 
-```lua
-require('nvim-cursorline').setup {
-  cursorword = {
-    enable = true,
-    min_length = 3,
-    hl = { underline = true },
-  }
-}
-```
+`:Cursorword` command
 
-## Acknowledgments
-
-Thanks goes to these people/projects for inspiration:
-
-- [delphinus/vim-auto-cursorline](https://github.com/delphinus/vim-auto-cursorline)
-- [itchyny/vim-cursorword](https://github.com/itchyny/vim-cursorword)
+| **Args**  | **Description**                             |
+| --------- | ------------------------------------------- |
+| `toggle`  | Toggle highlight the word under the cursor  |
+| `enable`  | Enable highlight the word under the cursor  |
+| `disable` | Disable highlight the word under the cursor |
 
 ## License
 
-This software is released under the MIT License, see LICENSE.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
