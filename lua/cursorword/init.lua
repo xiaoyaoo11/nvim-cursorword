@@ -65,9 +65,9 @@ local function merge_config(default_opts, user_opts)
 end
 
 local matchdelete = function()
-  if w.stcursorword ~= nil then
-    pcall(fn.matchdelete, w.stcursorword)
-    w.stcursorword = nil
+  if w.cursorword ~= nil then
+    pcall(fn.matchdelete, w.cursorword)
+    w.cursorword = nil
     prev_start_column = math.huge
     prev_end_column = -1
   end
@@ -114,7 +114,7 @@ local highlight_same = function(configs)
       return
     end
 
-    w.stcursorword = matchadd(PLUG_NAME, [[\(\<\|\W\|\s\)\zs]] .. word .. [[\ze\(\s\|[^[:alnum:]_]\|$\)]], -1)
+    w.cursorword = matchadd(PLUG_NAME, [[\(\<\|\W\|\s\)\zs]] .. word .. [[\ze\(\s\|[^[:alnum:]_]\|$\)]], -1)
   end
 end
 
